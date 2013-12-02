@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.zxy.web.framework.locus.repository.mybatis.TableEntityMyBatisDao">
+    <resultMap id="tableEntityDetail" type="TableEntity">
+        <id column="id" property="id" />
+        <result column="create_date" property="createDate" />
+        <result column="tableName" property="tableName" />
+        <result column="useFor" property="useFor" />
+        <collection property="columns" javaType="Column">
+            <id column="column_id" property="id" />
+            <result column="column_create_date" property="createDate" />
+            <result column="column_columnType" property="columnType" />
+            <result column="column_columnLength" property="columnLength" />
+            <result column="column_showName" property="showName" />
+            <result column="column_gridShow" property="gridShow" />
+        </collection>
+    </resultMap>
+    
+    <resultMap id="tableEntityDetail1" type="TableEntity">
+        <id column="id" property="id" />
+        <result column="create_date" property="createDate" />
+        <result column="tableName" property="tableName" />
+        <result column="useFor" property="useFor" />
+    </resultMap>
+
+    <select id="findByPage" resultMap="tableEntityDetail1" parameterType="java.util.Map">
+      select id, create_date, tableName, useFor
+      from xz_table
+      where
+      ${whereSql}
+      and 1=1
+      limit #{pageFrom}, #{rows}
+    </select>
+
+    <select id="findTableColumns" resultType="Column" parameterType="string">
+        select
+          id,
+          create_date as createDate,
+          columnName,
+          columnType,
+          columnLength,
+          showName,
+          gridShow
+        from
+          xz_column t, xz_table m
+        where
+          t.table_id = m.id
+          and
+          m.id=#{id}
+    </select>
+
+    <insert id="createTable" parameterType="java.util.Map">
+        create table ${tableName} (
+          id varchar(40) primary key not null,
+          create_date datetime not null
+        )
+    </insert>
+
+    <update id="renameTable" parameterType="java.util.Map">
+        alter table ${oldName} rename to ${newName}
+    </update>
+
+    <update id="deleteTable" parameterType="java.util.Map">
+        drop table ${tableName}
+    </update>
+
+</mapper>
