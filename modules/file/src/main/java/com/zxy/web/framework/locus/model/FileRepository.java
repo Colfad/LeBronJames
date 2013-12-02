@@ -2,12 +2,17 @@ package com.zxy.web.framework.locus.model;
 
 import com.zxy.web.module.core.orm.model.BaseEntity;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * File Repository
  * 只存储文件的UUID类型
  *
  * @author James
  */
+@Entity
+@Table(name = "xz_file_repository")
 public class FileRepository extends BaseEntity {
 
     /** mime type name like application/ms-excel */
