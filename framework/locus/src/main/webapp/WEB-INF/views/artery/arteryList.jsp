@@ -259,7 +259,7 @@
             $('[data-rel=tooltip]').tooltip();
 
             var alertInfo = $('#alertInfo');
-            if (alertInfo) {
+            if (alertInfo.length > 0) {
 
                 function deleteAlertInfo() {
                     alertInfo.toggle('slow');
@@ -268,6 +268,17 @@
                 // 3秒之后信息框将消失
                 window.setTimeout(deleteAlertInfo, 3000);
             }
+
+            var timeLineInfo = $('#timeLine');
+            function timeLineFunction() {
+                if (timeLineInfo.length > 0) {
+                    var second = document.getElementById('timeLine');
+                    second.innerText = second.innerText - 1;
+                }
+            }
+            window.setInterval(timeLineFunction, 1000);
+
+
         });
 
         function confirmDelete(obj) {

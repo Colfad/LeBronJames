@@ -148,10 +148,9 @@
                         <i class="icon-undo"></i>
                         重填
                     </button>
-                    <button class="btn" type="button" onclick="history.back()">
-                        <i class="icon-arrow-left"></i>
+                    <a class="btn icon-arrow-left" type="button" href="${ctx}/artery">
                         返回
-                    </button>
+                    </a>
                 </div>
             </fieldset>
         </form>

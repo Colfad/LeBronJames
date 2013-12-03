@@ -72,7 +72,7 @@ public class ArteryController {
     @RequestMapping("delete/{id}")
     public String deleteArtery(@PathVariable("id") String id, RedirectAttributes redirectAttributes) {
         arteryService.delete(id);
-        redirectAttributes.addFlashAttribute("message", "Great.. 删除患者信息成功!");
+        redirectAttributes.addFlashAttribute("message", "Great.. 删除患者信息成功!   此信息还有<strong id=\"timeLine\" style=\"color:red\">3</strong>秒关闭!!!");
         return "redirect:/artery";
     }
 
@@ -88,7 +88,7 @@ public class ArteryController {
     public String create(@Valid Artery artery, RedirectAttributes redirectAttributes, @RequestParam("id") String id) {
         FixEntityUtil.fixEntity(artery);
         arteryService.save(artery);
-        redirectAttributes.addFlashAttribute("message", "Great.. 创建患者信息成功!");
+        redirectAttributes.addFlashAttribute("message", "Great.. 创建患者信息成功!   此信息还有<strong id=\"timeLine\" style=\"color:red\">3</strong>秒关闭!!!");
         return "redirect:/artery";
     }
 
@@ -103,7 +103,7 @@ public class ArteryController {
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public String update(@Valid @ModelAttribute("artery") Artery artery, RedirectAttributes redirectAttributes) {
         arteryService.save(artery);
-        redirectAttributes.addFlashAttribute("message", "Great.. 保存患者信息成功!");
+        redirectAttributes.addFlashAttribute("message", "Great.. 保存患者信息成功!   此信息还有<strong id=\"timeLine\" style=\"color:red\">3</strong>秒关闭!!!");
         return "redirect:/artery";
     }
 
@@ -153,7 +153,7 @@ public class ArteryController {
         artery.setArteryTreat(arteryTreat);
         arteryService.save(artery);
 
-        redirectAttributes.addFlashAttribute("message", "Great ... 添加颅内肿瘤病患治疗信息成功!!!");
+        redirectAttributes.addFlashAttribute("message", "Great ... 添加颅内肿瘤病患治疗信息成功!!!   此信息还有<strong id=\"timeLine\" style=\"color:red\">3</strong>秒关闭!!!");
 
         return "redirect:/artery";
     }
@@ -176,7 +176,7 @@ public class ArteryController {
         artery.setArteryCoil(arteryCoil);
         arteryService.save(artery);
 
-        redirectAttributes.addFlashAttribute("message", "Great ... 保存颅内肿瘤Coil信息成功!!!");
+        redirectAttributes.addFlashAttribute("message", "Great ... 保存颅内肿瘤Coil信息成功!!!  此信息还有<strong id=\"timeLine\" style=\"color:red\">3</strong>秒关闭!!!");
         return "redirect:/artery";
     }
 
@@ -197,7 +197,7 @@ public class ArteryController {
         artery.setArteryDescrib(arteryDescrib);
         arteryService.save(artery);
 
-        redirectAttributes.addFlashAttribute("message", "Great ... 添加颅内病患肿瘤描述信息成功!!!");
+        redirectAttributes.addFlashAttribute("message", "Great ... 添加颅内病患肿瘤描述信息成功!!!   此信息还有<strong id=\"timeLine\" style=\"color:red\">3</strong>秒关闭!!!");
         return "redirect:/artery";
     }
 
@@ -266,7 +266,7 @@ public class ArteryController {
         artery.setArteryVisit(arteryVisit);
         arteryService.save(artery);
 
-        redirectAttributes.addFlashAttribute("message", "Great ... 保存随访信息成功!!!");
+        redirectAttributes.addFlashAttribute("message", "Great ... 保存随访信息成功!!!  此信息还有<strong id=\"timeLine\" style=\"color:red\">3</strong>秒关闭!!!");
         return "redirect:/artery";
     }
 
@@ -285,7 +285,7 @@ public class ArteryController {
         Artery artery = arteryService.getArtery(arteryClinic.getParent().getId());
         artery.setArteryClinic(arteryClinic);
         arteryService.save(artery);
-        redirectAttributes.addFlashAttribute("message", "Great !!! 添加病患治疗信息成功!!!!!");
+        redirectAttributes.addFlashAttribute("message", "Great !!! 添加病患治疗信息成功!!!!!   此信息还有<strong id=\"timeLine\" style=\"color:red\">3</strong>秒关闭!!!");
         return "redirect:/artery";
     }
 
