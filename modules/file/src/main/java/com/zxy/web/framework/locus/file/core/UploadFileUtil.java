@@ -17,6 +17,8 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
@@ -34,23 +36,22 @@ import java.util.List;
  * 与DB之后的通信，交互也不是的JDBC而是JPA+SPRINGDATA
  * 所以也存在问题，这是以后需要进行修改的地方，第一版就这样吧
  *
+ * 这里要注意一个地方，这里用到了FileRepositoryService
+ * 而FileRespositoryService这个类里面还用到了UploadFileUtil这个类
+ * 那么Spring在注入Bean的时候就会造成循环的情况。
+ * 所以这里要使用@Lazy这个标签来进行注解，让其懒加载，以便能在后面注入
+ * 实体类@Lazy这个Annotation相当于
+ * <bean id="uploadFileUtil" class="com.zxy.web.framework.locus.file.core.UploadFileUtil" lazy-init="true" />
+ * 上面的写法跟这里的方式其实就是一个意思
+ *
  * @author James
  */
+@Component
 public class UploadFileUtil {
 
     private static final Logger logger = LoggerFactory.getLogger(UploadFileUtil.class);
     private MimeTypeService mimeTypeService;
     private MimeTypeExtensionService mimeTypeExtensionService;
-    private FileRepositoryService fileRepositoryService;
-
-    public FileRepositoryService getFileRepositoryService() {
-        return fileRepositoryService;
-    }
-
-    @Autowired
-    public void setFileRepositoryService(FileRepositoryService fileRepositoryService) {
-        this.fileRepositoryService = fileRepositoryService;
-    }
 
     public MimeTypeService getMimeTypeService() {
         return mimeTypeService;
@@ -78,9 +79,10 @@ public class UploadFileUtil {
      * @throws FileUploadException
      * @throws IOException
      */
-    public String uploadFile(HttpServletRequest request) throws FileUploadException, IOException {
+    public FileRepository uploadFile(HttpServletRequest request) throws FileUploadException, IOException {
 
         boolean isMultipartContent = ServletFileUpload.isMultipartContent(request);
+        FileRepository fileRepository = null;
         if (isMultipartContent) {
             FileItemFactory factory = new DiskFileItemFactory();
             ServletFileUpload upload = new ServletFileUpload(factory);
@@ -93,7 +95,7 @@ public class UploadFileUtil {
                 String fileExtension = FileUtil.getFileExtension(fileName);
                 // 获得文件的Extension类型
                 MimeTypeExtension mimeTypeExtension = mimeTypeExtensionService.findByMimeTypeExtensionName(fileExtension);
-                FileRepository fileRepository = new FileRepository();
+                fileRepository = new FileRepository();
                 FixEntityUtil.fixEntity(fileRepository);
                 String fileRepoId = fileRepository.getId();
                 String datePath = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
@@ -131,7 +133,7 @@ public class UploadFileUtil {
             throw new NotMultipartRequestException("上传的文件里面没有Multipart内容");
         }
 
-        return null;
+        return fileRepository;
     }
 
     /**
@@ -139,13 +141,11 @@ public class UploadFileUtil {
      * byte[]数组，以便下面再往客户端去写数据
      *
      *
-     * @param id
      * @return
      * @throws IOException
      */
-    public byte[] getFileContent(String id) throws IOException {
+    public byte[] getFileContent(String filePath) throws IOException {
         StringBuilder builder = new StringBuilder();
-        String filePath = fileRepositoryService.getFilePathById(id);
         FileReader fr = new FileReader(filePath);
         BufferedReader br = new BufferedReader(fr);
         String readLineStr = null;
@@ -163,16 +163,14 @@ public class UploadFileUtil {
      *
      * 返回FileRepositoryDTO类
      *
-     * @param id
      * @return
      * @throws IOException
      * s
      * @see FileRepositoryDTO
      */
-    public FileRepositoryDTO getFileContentWithFileRepository(String id) throws IOException {
+    public FileRepositoryDTO getFileContentWithFileRepository(String filePath, FileRepository fileRepository) throws IOException {
 
         StringBuilder builder = new StringBuilder();
-        String filePath = fileRepositoryService.getFilePathById(id);
         FileReader fr = new FileReader(filePath);
         BufferedReader br = new BufferedReader(fr);
         String readLineStr = null;
@@ -182,7 +180,6 @@ public class UploadFileUtil {
 
         String fileContent = builder.toString();
 
-        FileRepository fileRepository = fileRepositoryService.getFileRepository(id);
         FileRepositoryDTO dto = new FileRepositoryDTO();
         BeanMapper.copy(fileRepository, dto);
         dto.setContent(Base64.decode(fileContent));

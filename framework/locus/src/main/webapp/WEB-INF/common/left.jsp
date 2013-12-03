@@ -49,6 +49,15 @@
             </li>
         </shiro:hasPermission>
 
+        <shiro:hasPermission name="file:view">
+            <li <c:if test="${fileActive != null}">class="active"</c:if>>
+                <a href="${ctx}/file/">
+                    <i class="icon-book"></i>
+                    <span class="menu-text">文件中心</span>
+                </a>
+            </li>
+        </shiro:hasPermission>
+
         <!--
         <li <c:if test="${baseInfoActive != null}">class="active"</c:if>>
             <a href="${ctx}/baseInfo">

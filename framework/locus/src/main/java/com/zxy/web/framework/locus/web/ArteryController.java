@@ -86,7 +86,6 @@ public class ArteryController {
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public String create(@Valid Artery artery, RedirectAttributes redirectAttributes, @RequestParam("id") String id) {
-        System.out.println(id);
         FixEntityUtil.fixEntity(artery);
         arteryService.save(artery);
         redirectAttributes.addFlashAttribute("message", "Great.. 创建患者信息成功!");

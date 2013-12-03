@@ -7,6 +7,10 @@
         <pattern>/init/*</pattern>
         <pattern>/login</pattern>
         <pattern>/logout</pattern>
+        <!--
+        <pattern>/file/create</pattern>
+        <pattern>/file/update</pattern>
+        -->
 	</excludes>
 	
 	<decorator name="default" page="default.jsp">

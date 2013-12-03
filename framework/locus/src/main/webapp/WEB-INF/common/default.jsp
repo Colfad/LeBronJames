@@ -25,7 +25,7 @@
     <![endif]-->
 
     <!-- page specific plugin styles -->
-
+    <sitemesh:head />
     <!-- fonts -->
 
     <link rel="stylesheet" href="${ctx}/resources/assets/css/ace-fonts.css" />
