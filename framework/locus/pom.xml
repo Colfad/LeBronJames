@@ -33,7 +33,7 @@
         <repository>
             <id>central</id>
             <name>Central Repository</name>
-            <url>http://192.168.30.202:8081/nexus/content/groups/public</url>
+            <url>http://localhost:8081/nexus/content/groups/public</url>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>

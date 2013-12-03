@@ -81,16 +81,17 @@
     <bean id="springContextHolder" class="com.zxy.web.module.core.utils.SpringContextHolder" lazy-init="false"/>
     <!-- production环境 -->
 
-
+    <!--阿里云文件上传时会使用OSSClient类的注入-->
     <bean id="ossClient" class="com.aliyun.openservices.oss.OSSClient">
         <constructor-arg index="0" value="jo8nPbtig5N4UcNH"/>
         <constructor-arg index="1" value="MdwZXJ6MZg9cQ85iAwm1DLfEy9IRZ2"/>
     </bean>
 
-    <bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <!-- one of the properties available; the maximum file size in bytes -->
+    <!-- Springmvc 文件上传会将直接封装成MultipartFile类 -->
+<!--    <bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        &lt;!&ndash; one of the properties available; the maximum file size in bytes &ndash;&gt;
         <property name="maxUploadSize" value="100000"/>
-    </bean>
+    </bean>-->
 
     <beans profile="production">
         <context:property-placeholder ignore-unresolvable="true"

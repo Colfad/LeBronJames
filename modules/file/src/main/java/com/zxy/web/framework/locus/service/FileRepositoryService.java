@@ -3,6 +3,7 @@ package com.zxy.web.framework.locus.service;
 import com.zxy.web.framework.locus.file.core.Config;
 import com.zxy.web.framework.locus.file.core.UploadFileUtil;
 import com.zxy.web.framework.locus.model.FileRepository;
+import com.zxy.web.framework.locus.model.dto.FileRepositoryDTO;
 import com.zxy.web.framework.locus.repository.jpa.FileRepositoryDao;
 import com.zxy.web.module.core.orm.util.DynamicSpecifications;
 import com.zxy.web.module.core.orm.util.SearchFilter;
@@ -64,6 +65,18 @@ public class FileRepositoryService {
         fileRepositoryDao.delete(id);
 
         // 将实体文件删除掉
+    }
+
+    public byte[] getFileContent(String path, FileRepository fileRepository) {
+        FileRepositoryDTO dto = null;
+        try {
+            dto = uploadFileUtil.getFileContentWithFileRepository(path, fileRepository);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return dto.getContent();
+
     }
 
     public Page<FileRepository> getFileRepositoryByPage(Map<String, Object> searchParams, int pageNumber, int pageSize,

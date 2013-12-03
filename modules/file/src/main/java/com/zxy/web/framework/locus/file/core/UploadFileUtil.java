@@ -98,6 +98,11 @@ public class UploadFileUtil {
                 fileRepository = new FileRepository();
                 FixEntityUtil.fixEntity(fileRepository);
                 String fileRepoId = fileRepository.getId();
+                fileRepository.setMimeTypeExtensionName(fileExtension);
+                if (mimeTypeExtension.getMimeType() != null) {
+                    fileRepository.setMimeTypeName(mimeTypeExtension.getMimeType().getMimeTypeName());
+                }
+                fileRepository.setFileName(fileName);
                 String datePath = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
                 String saveFilePath = Config.UPLOAD_FILE_PATH + "/" + datePath + "/";
                 File file = new File(saveFilePath);
@@ -171,6 +176,7 @@ public class UploadFileUtil {
     public FileRepositoryDTO getFileContentWithFileRepository(String filePath, FileRepository fileRepository) throws IOException {
 
         StringBuilder builder = new StringBuilder();
+        filePath = Config.UPLOAD_FILE_PATH + "/" + filePath + "/" + fileRepository.getId() + ".xzsoft";
         FileReader fr = new FileReader(filePath);
         BufferedReader br = new BufferedReader(fr);
         String readLineStr = null;

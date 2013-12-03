@@ -11,6 +11,7 @@
         <pattern>/file/create</pattern>
         <pattern>/file/update</pattern>
         -->
+        <pattern>/file/download/*</pattern>
 	</excludes>
 	
 	<decorator name="default" page="default.jsp">
