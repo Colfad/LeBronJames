@@ -93,7 +93,7 @@
             <th><i class="icon-time hidden-phone"></i> 文件上传日期</th>
             <th>MIMETYPE</th>
             <th>文件扩展名</th>
-            <th>预览(图片)</th>
+            <th>预览(<span style="color: #ff0000">图片单击可以查看大图</span>其他点击下载)</th>
 
             <th>操作</th>
             <th></th>
@@ -122,6 +122,12 @@
                                 </a>
                             </li>
                         </ul>
+                    </c:if>
+                    <c:if test="${fn:containsIgnoreCase(fileRepository.mimeTypeName, 'text')}">
+                        <img alt="150x150" style="width: 150px" src="${ctx}/resources/icon/doc_pic.png" />
+                    </c:if>
+                    <c:if test="${fn:containsIgnoreCase(fileRepository.mimeTypeName, 'msword')}">
+                        <img alt="150x150" style="width: 150px" src="${ctx}/resources/icon/word_pic.png" />
                     </c:if>
                 </td>
                 <td>
