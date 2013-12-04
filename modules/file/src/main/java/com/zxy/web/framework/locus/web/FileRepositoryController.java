@@ -117,7 +117,7 @@ public class FileRepositoryController {
      * @param dd
      * @param id
      */
-    @RequestMapping(value = "download/{yyyy}/{mm}/{dd}/{id}")
+/*    @RequestMapping(value = "download/{yyyy}/{mm}/{dd}/{id}")
     public void downloadFile(@PathVariable("yyyy") String yyyy, @PathVariable("mm") String mm,
                              @PathVariable("dd") String dd, @PathVariable("id") String id, HttpServletResponse response) throws UnsupportedEncodingException {
         FileRepository fileRepository = fileRepositoryService.getFileRepository(id);
@@ -148,6 +148,23 @@ public class FileRepositoryController {
             e.printStackTrace();
         }
 
+    }*/
+
+    @RequestMapping(value = "download/{yyyy}/{mm}/{dd}/{id}")
+    public ResponseEntity<byte[]> downloadFile2(@PathVariable("yyyy") String yyyy, @PathVariable("mm") String mm,
+                             @PathVariable("dd") String dd, @PathVariable("id") String id) throws UnsupportedEncodingException {
+        FileRepository fileRepository = fileRepositoryService.getFileRepository(id);
+        String filePath = yyyy + "/" + mm + "/" + dd;
+        byte[] content = fileRepositoryService.getFileContent(filePath, fileRepository);
+        HttpHeaders httpHeaders = new HttpHeaders();
+        if (fileRepository.getMimeTypeName() == null || fileRepository.getMimeTypeName().equals("")) {
+            httpHeaders.set("Content-Type", "multipart/form-data");
+        } else {
+            httpHeaders.set("Content-Type", fileRepository.getMimeTypeName());
+        }
+        httpHeaders.setContentDispositionFormData("attachment", new String(fileRepository.getFileName().getBytes(), "iso8859-1"));
+        ResponseEntity<byte[]> entity = new ResponseEntity<byte[]>(content, httpHeaders, HttpStatus.OK);
+        return entity;
     }
 
     @RequestMapping(value = "download/{yyyy}/{mm}/{dd}/{id}/image")

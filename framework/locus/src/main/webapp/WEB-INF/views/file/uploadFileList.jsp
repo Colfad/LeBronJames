@@ -13,6 +13,10 @@
         .picBro {
 
         }
+
+        .picBro td {
+            vertical-align: middle;
+        }
     </style>
 </head>
 
@@ -88,7 +92,6 @@
                 <label><input type="checkbox" class="ace"><span class="lbl"></span></label>
             </th>
 
-            <th>文件ID</th>
             <th>文件名</th>
             <th><i class="icon-time hidden-phone"></i> 文件上传日期</th>
             <th>MIMETYPE</th>
@@ -105,30 +108,45 @@
                 <td class="center">
                     <label><input type="checkbox" class="ace"><span class="lbl"></span></label>
                 </td>
-                <td>${fileRepository.id}</td>
                 <td>${fileRepository.fileName}</td>
                 <td><fmt:formatDate value="${fileRepository.createDate}" pattern="yyyy年MM月dd日 HH时mm分ss秒" /></td>
                 <td>${fileRepository.mimeTypeName}</td>
                 <td>${fileRepository.mimeTypeExtensionName}</td>
                 <td>
-                    <c:if test="${fn:containsIgnoreCase(fileRepository.mimeTypeName, 'image')}">
-                        <ul class="ace-thumbnails">
-                            <li>
-                                <a href="${ctx}/file/download/<fmt:formatDate value="${fileRepository.createDate}" pattern="yyyy/MM/dd" />/${fileRepository.id}/image" data-rel="colorbox">
-                                    <img alt="150x150" style="width: 150px" src="${ctx}/file/download/<fmt:formatDate value="${fileRepository.createDate}" pattern="yyyy/MM/dd" />/${fileRepository.id}" />
-                                    <div class="text">
-                                        <div class="inner">${fileRepository.fileName}</div>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </c:if>
-                    <c:if test="${fn:containsIgnoreCase(fileRepository.mimeTypeName, 'text')}">
-                        <img alt="150x150" style="width: 150px" src="${ctx}/resources/icon/doc_pic.png" />
-                    </c:if>
-                    <c:if test="${fn:containsIgnoreCase(fileRepository.mimeTypeName, 'msword')}">
-                        <img alt="150x150" style="width: 150px" src="${ctx}/resources/icon/word_pic.png" />
-                    </c:if>
+                    <c:choose>
+                        <c:when test="${fn:containsIgnoreCase(fileRepository.mimeTypeName, 'image')}">
+                            <ul class="ace-thumbnails">
+                                <li>
+                                    <a href="${ctx}/file/download/<fmt:formatDate value="${fileRepository.createDate}" pattern="yyyy/MM/dd" />/${fileRepository.id}/image" data-rel="colorbox">
+                                        <img alt="150x150" style="heigth: 150px; width: 150px" src="${ctx}/file/download/<fmt:formatDate value="${fileRepository.createDate}" pattern="yyyy/MM/dd" />/${fileRepository.id}" />
+                                        <div class="text">
+                                            <div class="inner">${fileRepository.fileName}</div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </c:when>
+                        <c:when test="${fn:containsIgnoreCase(fileRepository.mimeTypeName, 'text')}">
+                            <a href="${ctx}/file/download/<fmt:formatDate value="${fileRepository.createDate}" pattern="yyyy/MM/dd" />/${fileRepository.id}">
+                                <img alt="150x150" style="heigth: 150px; width: 150px" src="${ctx}/resources/icon/doc_pic.png" />
+                            </a>
+                        </c:when>
+                        <c:when test="${fn:containsIgnoreCase(fileRepository.mimeTypeName, 'msword')}">
+                            <a href="${ctx}/file/download/<fmt:formatDate value="${fileRepository.createDate}" pattern="yyyy/MM/dd" />/${fileRepository.id}">
+                                <img alt="150x150" style="height: 150px; width: 150px" src="${ctx}/resources/icon/word_pic.png" />
+                            </a>
+                        </c:when>
+                        <c:when test="${fn:containsIgnoreCase(fileRepository.mimeTypeName, 'ms-excel')}">
+                            <a href="${ctx}/file/download/<fmt:formatDate value="${fileRepository.createDate}" pattern="yyyy/MM/dd" />/${fileRepository.id}">
+                                <img alt="150x150" style="height: 150px; width: 150px" src="${ctx}/resources/icon/excel_pic.png" />
+                            </a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="${ctx}/file/download/<fmt:formatDate value="${fileRepository.createDate}" pattern="yyyy/MM/dd" />/${fileRepository.id}">
+                                <img alt="150x150" style="height: 150px; width: 150px" src="${ctx}/resources/icon/file_pic.png" />
+                            </a>
+                        </c:otherwise>
+                    </c:choose>
                 </td>
                 <td>
                     <div class="inline position-relative">
