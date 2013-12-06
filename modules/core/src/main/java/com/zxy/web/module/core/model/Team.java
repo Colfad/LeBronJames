@@ -1,4 +1,4 @@
-package com.zxy.web.framework.locus.model;
+package com.zxy.web.module.core.model;
 
 import com.zxy.web.module.core.orm.model.BaseEntity;
 import org.hibernate.annotations.Cache;

@@ -1,4 +1,4 @@
-package com.zxy.web.framework.locus.model;
+package com.zxy.web.module.core.model;
 
 import com.google.common.collect.ImmutableList;
 import com.zxy.web.module.core.orm.model.BaseEntity;

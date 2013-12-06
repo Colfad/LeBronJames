@@ -1,4 +1,4 @@
-package com.zxy.web.framework.locus.model;
+package com.zxy.web.module.core.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.zxy.web.module.core.orm.model.BaseEntity;
@@ -7,7 +7,6 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import javax.persistence.Column;
 
 import javax.persistence.*;
 import java.util.List;

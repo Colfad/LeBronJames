@@ -1,10 +1,9 @@
-package com.zxy.web.framework.locus.web;
+package com.zxy.web.module.core.web;
 
 import com.google.common.collect.Maps;
-import com.zxy.web.framework.locus.model.Role;
-import com.zxy.web.framework.locus.service.RoleService;
+import com.zxy.web.module.core.model.Role;
 import com.zxy.web.module.core.orm.FixEntityUtil;
-import com.zxy.web.module.core.web.Servlets;
+import com.zxy.web.module.core.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;

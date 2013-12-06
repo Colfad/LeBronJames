@@ -1,10 +1,10 @@
-package com.zxy.web.framework.locus.service;
+package com.zxy.web.module.core.service;
 
-import com.zxy.web.framework.locus.model.User;
-import com.zxy.web.framework.locus.repository.jpa.UserDao;
+import com.zxy.web.module.core.model.User;
 import com.zxy.web.module.core.orm.FixEntityUtil;
 import com.zxy.web.module.core.orm.util.DynamicSpecifications;
 import com.zxy.web.module.core.orm.util.SearchFilter;
+import com.zxy.web.module.core.repository.jpa.UserDao;
 import com.zxy.web.module.core.security.utils.Digests;
 import com.zxy.web.module.core.utils.Encodes;
 import org.apache.commons.lang3.StringUtils;

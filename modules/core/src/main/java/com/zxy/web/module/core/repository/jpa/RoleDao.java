@@ -1,8 +1,7 @@
-package com.zxy.web.framework.locus.repository.jpa;
+package com.zxy.web.module.core.repository.jpa;
 
-import com.zxy.web.framework.locus.model.Role;
+import com.zxy.web.module.core.model.Role;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**

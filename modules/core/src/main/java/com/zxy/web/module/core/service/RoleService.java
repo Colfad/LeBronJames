@@ -1,10 +1,10 @@
-package com.zxy.web.framework.locus.service;
+package com.zxy.web.module.core.service;
 
 
-import com.zxy.web.framework.locus.model.Role;
-import com.zxy.web.framework.locus.repository.jpa.RoleDao;
+import com.zxy.web.module.core.model.Role;
 import com.zxy.web.module.core.orm.util.DynamicSpecifications;
 import com.zxy.web.module.core.orm.util.SearchFilter;
+import com.zxy.web.module.core.repository.jpa.RoleDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

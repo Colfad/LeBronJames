@@ -16,11 +16,10 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.zxy.web.framework.locus.service;
+package com.zxy.web.module.core.service;
 
-import com.google.common.base.Objects;
-import com.zxy.web.framework.locus.model.Role;
-import com.zxy.web.framework.locus.model.User;
+import com.zxy.web.module.core.model.Role;
+import com.zxy.web.module.core.model.User;
 import com.zxy.web.module.core.utils.Encodes;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;

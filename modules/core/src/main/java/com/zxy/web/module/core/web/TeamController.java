@@ -1,9 +1,8 @@
-package com.zxy.web.framework.locus.web;
+package com.zxy.web.module.core.web;
 
 import com.google.common.collect.Maps;
-import com.zxy.web.framework.locus.model.Team;
-import com.zxy.web.framework.locus.service.TeamService;
-import com.zxy.web.module.core.web.Servlets;
+import com.zxy.web.module.core.model.Team;
+import com.zxy.web.module.core.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;

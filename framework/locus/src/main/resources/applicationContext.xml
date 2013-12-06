@@ -46,7 +46,7 @@
 		<property name="configLocation" value="classpath:/mapper/Configuration.xml" />
 		 -->
 		 <!-- 这种为自动去扫描此目录下的所有ENTITY -->
-		<property name="typeAliasesPackage" value="com.zxy.web.framework" />
+		<property name="typeAliasesPackage" value="com.zxy.web" />
 		<property name="mapperLocations" value="classpath:/mybatis/*Mapper.xml" />
 	</bean>
 	
