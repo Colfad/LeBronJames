@@ -30,6 +30,7 @@ public class UserController {
 
     static {
         sortTypes.put("auto", "自动");
+        sortTypes.put("userName", "用户名");
     }
 
     @RequestMapping("")
