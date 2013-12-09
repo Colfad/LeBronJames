@@ -81,7 +81,7 @@
             <thead>
             <tr>
                 <th class="center">
-                    <label><input type="checkbox"><span class="lbl"></span></label>
+                    <label><input type="checkbox" class="ace"><span class="lbl"></span></label>
                 </th>
                 <th>权限名</th>
                 <th><i class="icon-time hidden-phone"></i> 创建时间</th>
@@ -92,7 +92,7 @@
             <c:forEach items="${roles.content}" var="role">
                 <tr>
                     <td class="center">
-                        <label><input type="checkbox"><span class="lbl"></span></label>
+                        <label><input type="checkbox" class="ace"><span class="lbl"></span></label>
                     </td>
                     <td>${role.roleName}</td>
                     <td><fmt:formatDate value="${role.createDate}" pattern="yyyy年MM月dd日 HH时mm分ss秒" /></td>

@@ -7,22 +7,33 @@
 </head>
 <body>
 
-    <div id="breadcrumbs">
-        <ul class="breadcrumb">
-            <li><i class="icon-home"></i> <a href="${ctx}/">首页</a><span class="divider"><i class="icon-angle-right"></i></span></li>
-            <li class="active">权限添加</li>
-        </ul><!--.breadcrumb-->
+    <div class="breadcrumbs" id="breadcrumbs">
+        <script type="text/javascript">
+            try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+        </script>
 
-        <div id="nav-search">
+        <ul class="breadcrumb">
+            <li>
+                <i class="icon-home home-icon"></i>
+                <a href="${ctx}/">首页</a>
+                            <span class="divider">
+                                <i class="icon-angle-right arrow-icon"></i>
+                            </span>
+            </li>
+
+            <li class="active">权限管理</li>
+        </ul><!-- .breadcrumb -->
+
+        <div class="nav-search" id="nav-search">
             <form class="form-search">
-            <span class="input-icon">
-                <input autocomplete="off" id="nav-search-input" type="text" class="input-small search-query" placeholder="查询...">
-                <i id="nav-search-icon" class="icon-search"></i>
-            </span>
+                            <span class="input-icon">
+                                <input type="text" placeholder="查询 ..." class="input-small nav-search-input" id="nav-search-input" autocomplete="off" />
+                                <i class="icon-search nav-search-icon"></i>
+                            </span>
             </form>
-        </div><!--#nav-search-->
+        </div><!-- #nav-search -->
     </div>
-    <div id="page-content" class="clearfix">
+    <div id="page-content" class="page-content">
        <div class="page-header position-relative">
             <h1>权限管理 <small><i class="icon-double-angle-right"></i>对后台管理员进行权限分配工作</small></h1>
         </div><!--/page-header-->

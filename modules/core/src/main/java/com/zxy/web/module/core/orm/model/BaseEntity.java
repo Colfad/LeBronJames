@@ -1,5 +1,6 @@
 package com.zxy.web.module.core.orm.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -45,6 +46,7 @@ public abstract class BaseEntity implements Serializable {
         this.id = id;
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "create_date")
     @Temporal(TemporalType.TIMESTAMP)
     public Date getCreateDate() {

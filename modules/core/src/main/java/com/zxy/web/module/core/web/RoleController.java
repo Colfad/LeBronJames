@@ -64,6 +64,7 @@ public class RoleController {
     public String createForm(Model model) {
         model.addAttribute("role", new Role());
         model.addAttribute("action", "create");
+        model.addAttribute("roleActive", "active");
         return "role/roleForm";
     }
 
@@ -151,6 +152,18 @@ public class RoleController {
         roleService.saveRole(role);
         redirectAttributes.addFlashAttribute("message", "Great.. 保存权限成功!");
         return "redirect:/role";
+    }
+
+    @RequestMapping(value = "findAllRole", method = RequestMethod.POST)
+    public @ResponseBody List<Role> findAllRole() {
+        List<Role> roles = roleService.getAllRole();
+        return roles;
+    }
+
+    @RequestMapping(value = "toJqPage", method = RequestMethod.GET)
+    public String jqGridPage(Model model) {
+        model.addAttribute("roleActive", "active");
+        return "role/roleJqList";
     }
 
     @ModelAttribute()

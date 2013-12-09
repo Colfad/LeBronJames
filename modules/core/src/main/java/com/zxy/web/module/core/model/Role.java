@@ -1,5 +1,7 @@
 package com.zxy.web.module.core.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.collect.ImmutableList;
 import com.zxy.web.module.core.orm.model.BaseEntity;
 import org.apache.commons.lang.StringUtils;
@@ -12,6 +14,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,6 +32,7 @@ public class Role extends BaseEntity {
 
     private String permissions;
 
+    @JsonIgnore
     @Column(length = 5000)
     public String getPermissions() {
         return permissions;
@@ -46,6 +50,7 @@ public class Role extends BaseEntity {
         this.roleName = roleName;
     }
 
+    @JsonIgnore
     @Transient
     public List<String> getPermissionList() {
         return ImmutableList.copyOf(StringUtils.split(permissions, ","));
