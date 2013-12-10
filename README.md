@@ -1,13 +1,6 @@
 LeBronJames
 ===========
 
-James Chows' Repository
+James Chow is NBA super star <i>LeBron James</i> big fan, so I use his name for this git repository.
 
-
-James Chow's Project. Use JavaEE
-Spring 3.2
-JPA
-Spring-data
-Spring MVC
-MyBatis 3.1
-...
+I hope he'll win the 2013 NBA championship.
