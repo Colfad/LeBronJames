@@ -15,9 +15,6 @@ Date: 2013-12-10 11:16:42
 -- Create Database locus
 -- ----------------------------
 
-CREATE DATABASE `locus` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE locus;
-
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
@@ -613,8 +610,8 @@ CREATE TABLE `xz_mime_type` (
 -- ----------------------------
 DROP TABLE IF EXISTS `xz_mime_type_extension`;
 CREATE TABLE `xz_mime_type_extension` (
-  `MTE_NAME` varchar(255) NOT NULL,
   `MTE_ID` int(11) DEFAULT NULL,
+  `MTE_NAME` varchar(255) NOT NULL,
   PRIMARY KEY (`MTE_NAME`),
   KEY `FK986F4828ABB4CE9` (`MTE_ID`),
   CONSTRAINT `FK986F4828ABB4CE9` FOREIGN KEY (`MTE_ID`) REFERENCES `xz_mime_type` (`MT_ID`)
