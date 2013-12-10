@@ -9,7 +9,7 @@ import java.util.List;
  * @author James
  */
 @Entity
-@Table
+@Table(name = "xz_icterus")
 public class Icterus extends PatientInfo {
     /** 邮政编码 */
     private String zCode;

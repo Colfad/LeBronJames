@@ -64,8 +64,16 @@
         <repository>
             <id>nexus</id>
             <name>Team Nexus Repository</name>
+            <url>http://repository.sonatype.org/content/groups/public/</url>
+        </repository>
+
+        <!--
+        <repository>
+            <id>nexus</id>
+            <name>Team Nexus Repository</name>
             <url>http://localhost:8081/nexus/content/groups/public</url>
         </repository>
+        -->
 
         <repository>
             <id>repo.springsource.org</id>
