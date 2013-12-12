@@ -63,6 +63,7 @@ public class UserController {
     public String createForm(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("action", "create");
+        model.addAttribute("userActive", "active");
         return "account/userForm";
     }
 

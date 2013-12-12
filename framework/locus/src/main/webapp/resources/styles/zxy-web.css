@@ -1,0 +1,10 @@
+
+/* list table style */
+#contentTable td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+#contentTable th {
+    text-align: center;
+}

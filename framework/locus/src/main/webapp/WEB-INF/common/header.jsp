@@ -17,6 +17,7 @@
 </a><!-- /.brand -->
 
 <ul class="nav ace-nav pull-right">
+<%--
 <li class="grey">
     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
         <i class="icon-tasks"></i>
@@ -226,9 +227,11 @@
     </ul>
 </li>
 
+--%>
+
 <li class="light-blue">
     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-        <img class="nav-user-photo" src="${ctx}/resources/assets/avatars/user.jpg" alt="Jason's Photo" />
+        <img class="nav-user-photo" src="${ctx}/resources/assets/avatars/default_user.png" alt="Jason's Photo" />
 								<span class="user-info">
 									<small>Welcome,</small>
 									<shiro:principal property="realName" />

@@ -7,6 +7,8 @@
 <html>
 <head>
     <title>用户管理</title>
+
+    <link rel="stylesheet" href="${ctx}/resources/styles/zxy-web.css" />
 </head>
 
 <body>

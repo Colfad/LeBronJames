@@ -7,6 +7,7 @@
 <html>
 <head>
     <title>颅内动脉瘤病患信息列表</title>
+    <link href="${ctx}/resources/styles/zxy-web.css" rel="stylesheet" />
 </head>
 
 <body>
