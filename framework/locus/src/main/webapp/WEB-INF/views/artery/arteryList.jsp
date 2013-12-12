@@ -234,6 +234,8 @@
 
     <!-- page specific plugin scripts -->
 
+    <script type="text/javascript" src="${ctx}/resources/js/zxy-web.min.js"></script>
+
     <!-- ace scripts -->
 
     <script src="${ctx}/resources/assets/js/ace-elements.min.js"></script>
@@ -242,54 +244,5 @@
 
     <!-- inline scripts related to this page -->
 
-
-    <script type="text/javascript">
-        $(function() {
-
-            $('table th input:checkbox').on('click' , function(){
-                var that = this;
-                $(this).closest('table').find('tr > td:first-child input:checkbox')
-                        .each(function(){
-                            this.checked = that.checked;
-                            $(this).closest('tr').toggleClass('selected');
-                        });
-
-            });
-
-            $('[data-rel=tooltip]').tooltip();
-
-            var alertInfo = $('#alertInfo');
-            if (alertInfo.length > 0) {
-
-                function deleteAlertInfo() {
-                    alertInfo.toggle('slow');
-                }
-
-                // 3秒之后信息框将消失
-                window.setTimeout(deleteAlertInfo, 3000);
-            }
-
-            var timeLineInfo = $('#timeLine');
-            function timeLineFunction() {
-                if (timeLineInfo.length > 0) {
-                    var second = document.getElementById('timeLine');
-                    second.innerText = second.innerText - 1;
-                }
-            }
-            window.setInterval(timeLineFunction, 1000);
-
-
-        });
-
-        function confirmDelete(obj) {
-            bootbox.confirm("确定要删除此条数据?删除此条数据将不可以再找回.", "取消", "确定", function(result) {
-               if (!result) {
-                   return;
-               }
-               window.location.href = obj.getAttribute("href");
-            });
-        }
-
-    </script>
 </body>
 </html>
