@@ -25,4 +25,6 @@ public interface ArteryMyBatisDao {
 
     void deleteVisit(Map<String, String> map);
 
+    void deleteCoil(Map<String, String> map);
+
 }

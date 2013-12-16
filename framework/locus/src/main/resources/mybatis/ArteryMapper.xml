@@ -57,6 +57,16 @@
             )
     </delete>
 
+    <delete id="deleteCoil" parameterType="java.util.Map">
+        DELETE
+        FROM
+            xz_artery_coil
+        WHERE
+            parent_id IN (
+                ${ids}
+            )
+    </delete>
+
     <delete id="deleteArtery" parameterType="java.util.Map">
         DELETE
         FROM

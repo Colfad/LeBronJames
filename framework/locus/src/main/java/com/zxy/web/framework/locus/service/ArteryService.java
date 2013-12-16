@@ -57,7 +57,7 @@ public class ArteryService {
         arteryDao.delete(deleteList);
     }
 
-    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     private void deleteRelationByIds(Map<String, String> map) {
 
         arteryMyBatisDao.deleteClinic(map);
@@ -65,6 +65,7 @@ public class ArteryService {
         arteryMyBatisDao.deleteVisit(map);
         arteryMyBatisDao.deleteArtery(map);
         arteryMyBatisDao.deleteTreat(map);
+        arteryMyBatisDao.deleteCoil(map);
     }
 
 
