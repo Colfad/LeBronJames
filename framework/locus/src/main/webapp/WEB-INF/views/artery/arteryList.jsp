@@ -65,7 +65,7 @@
                 <div class="row">
                     <div class="span6">
                         <a href="${ctx}/artery/create" id="create_new" class="btn btn-success btn-xzweb">新增数据</a>
-                        <a id="delete_selected" class="btn btn-danger btn-xzweb" onclick="confirmDeleteChecked('${ctx}')">删除选中</a>
+                        <a id="delete_selected" class="btn btn-danger btn-xzweb" onclick="confirmDeleteChecked('${ctx}', '${ctx}/artery/deleteList')">删除选中</a>
                         <a href="${ctx}/artery/exportExcel" id="exportExcel" class="btn btn-warning btn-xzweb">导出Excel</a>
                         <a href="#" id="importExcel" class="btn btn-info btn-xzweb">导入Excel</a>
                     </div>

@@ -58,7 +58,7 @@ function confirmDelete(obj) {
 /**
  * 删除多数据
  */
-function confirmDeleteChecked(serverPath) {
+function confirmDeleteChecked(serverPath, deletePath) {
     bootbox.confirm("确定要删除此条数据?删除此条数据将不可以再找回.", "取消", "确定", function(result) {
         if (!result) {
             return;
@@ -90,7 +90,7 @@ function confirmDeleteChecked(serverPath) {
         } else {
             $.ajax({
                 method: 'POST',
-                url: serverPath + '/artery/deleteList',
+                url: deletePath,
                 data: {ids: ids.toString()},
                 success: function(data) {
                     if (data.operateSuccess == true) {
