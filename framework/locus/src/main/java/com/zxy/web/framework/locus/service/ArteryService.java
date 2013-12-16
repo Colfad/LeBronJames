@@ -58,6 +58,21 @@ public class ArteryService {
     }
 
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+    private void deleteRelationByIds(Map<String, String> map) {
+
+        arteryMyBatisDao.deleteClinic(map);
+        arteryMyBatisDao.deleteDescrib(map);
+        arteryMyBatisDao.deleteVisit(map);
+        arteryMyBatisDao.deleteArtery(map);
+        arteryMyBatisDao.deleteTreat(map);
+    }
+
+
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+    private void clearForeignKey(Map<String, String> map) {
+        arteryMyBatisDao.updateArteryWhenDelete(map);
+    }
+
     public void deleteByIds(String ids) {
         Map<String, String> map = new HashMap<String, String>();
 
@@ -72,12 +87,8 @@ public class ArteryService {
         }
 
         map.put("ids", idsBuilder.toString());
-        arteryMyBatisDao.updateArteryWhenDelete(map);
-        arteryMyBatisDao.deleteClinic(map);
-        arteryMyBatisDao.deleteDescrib(map);
-        arteryMyBatisDao.deleteVisit(map);
-        arteryMyBatisDao.deleteArtery(map);
-        arteryMyBatisDao.deleteTreat(map);
+        this.clearForeignKey(map);
+        this.deleteRelationByIds(map);
     }
 
     public Page<Artery> getArteryByPage(Map<String, Object> searchParams, int pageNumber, int pageSize,
