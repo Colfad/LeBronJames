@@ -97,11 +97,11 @@ public class ArteryController {
 
     @RequestMapping(value = "deleteList", method = RequestMethod.POST)
     public @ResponseBody OperateInfo deleteByList(@RequestParam("ids") String ids) {
-        List<String> list = ImmutableList.copyOf(StringUtils.split(ids, ","));
+//        List<String> list = ImmutableList.copyOf(StringUtils.split(ids, ","));
         OperateInfo operateInfo = new OperateInfo();
 
         try {
-            arteryService.delete(list);
+            arteryService.deleteByIds(ids);
             operateInfo.setOperateMessage("删除信息成功!!!");
             operateInfo.setOperateSuccess(true);
             operateInfo.setOperateSuccessUrl("/artery");

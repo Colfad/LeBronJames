@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zxy.web.framework.locus.repository.mybatis.ArteryMyBatisDao">
+
+    <update id="updateArteryWhenDelete" parameterType="java.util.Map">
+        UPDATE xz_artery
+        SET arteryClinic_id = NULL,
+         arteryCoil_id = NULL,
+         arteryDescrib_id = NULL,
+         arteryTreat_id = NULL,
+         arteryVisit_id = NULL
+        WHERE
+            id IN (
+                ${ids}
+            )
+    </update>
+
+    <delete id="deleteClinic" parameterType="java.util.Map">
+        DELETE
+        FROM
+            xz_artery_clinic
+        WHERE
+            parent_id IN (
+                ${ids}
+            )
+    </delete>
+
+    <delete id="deleteDescrib" parameterType="java.util.Map">
+        DELETE
+        FROM
+            xz_artery_describ
+        WHERE
+            parent_id IN (
+                ${ids}
+            )
+    </delete>
+
+    <delete id="deleteTreat" parameterType="java.util.Map">
+        DELETE
+        FROM
+            xz_artery_treat
+        WHERE
+            parent_id IN (
+                ${ids}
+            )
+    </delete>
+
+    <delete id="deleteVisit" parameterType="java.util.Map">
+        DELETE
+        FROM
+            xz_artery_visit
+        WHERE
+            parent_id IN (
+                ${ids}
+            )
+    </delete>
+
+    <delete id="deleteArtery" parameterType="java.util.Map">
+        DELETE
+        FROM
+            xz_artery
+        WHERE
+            id IN (
+                ${ids}
+            )
+    </delete>
+
+</mapper>
