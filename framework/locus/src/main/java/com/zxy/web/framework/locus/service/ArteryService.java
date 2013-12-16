@@ -13,6 +13,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +37,23 @@ public class ArteryService {
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void delete(String id) {
         arteryDao.delete(id);
+    }
+
+    /**
+     * 删除多个数据
+     *
+     * @param list
+     */
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+    public void delete(List<String> list) {
+        List<Artery> deleteList = new ArrayList<Artery>();
+        for (Iterator<String> iterator=list.iterator(); iterator.hasNext();) {
+            Artery artery = new Artery();
+            artery.setId(iterator.next());
+            deleteList.add(artery);
+        }
+
+        arteryDao.delete(deleteList);
     }
 
     public Page<Artery> getArteryByPage(Map<String, Object> searchParams, int pageNumber, int pageSize,

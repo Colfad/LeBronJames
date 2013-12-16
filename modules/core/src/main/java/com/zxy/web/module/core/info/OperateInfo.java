@@ -15,6 +15,8 @@ public class OperateInfo implements Serializable {
 
     private boolean operateSuccess;
 
+    private String operateErrorUrl;
+
     public String getOperateMessage() {
         return operateMessage;
     }
@@ -37,5 +39,13 @@ public class OperateInfo implements Serializable {
 
     public void setOperateSuccess(boolean operateSuccess) {
         this.operateSuccess = operateSuccess;
+    }
+
+    public String getOperateErrorUrl() {
+        return operateErrorUrl;
+    }
+
+    public void setOperateErrorUrl(String operateErrorUrl) {
+        this.operateErrorUrl = operateErrorUrl;
     }
 }

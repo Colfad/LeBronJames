@@ -54,3 +54,80 @@ function confirmDelete(obj) {
         window.location.href = obj.getAttribute("href");
     });
 }
+
+/**
+ * 删除多数据
+ */
+function confirmDeleteChecked(serverPath) {
+    bootbox.confirm("确定要删除此条数据?删除此条数据将不可以再找回.", "取消", "确定", function(result) {
+        if (!result) {
+            return;
+        }
+
+        var ids = new Array();
+        $('tr > td:first-child input:checkbox').each(function(index, obj) {
+            if (obj.checked === true) {
+                ids.push(obj.value);
+            }
+        });
+
+        if (ids.length == 0) {
+            var unique_id = $.gritter.add({
+                title: '提示信息',
+                text: '你没有勾选任何一行数据，此操作将不被允许!<span class="red">点击每行数据前方的CheckBox然后再点击此按钮</span>',
+                image: serverPath + '/resources/images/info.png',
+                sticky: true,
+                time: '',
+                class_name: 'gritter-info'
+            });
+
+            window.setTimeout(function() {
+                $.gritter.remove(unique_id, {
+                    fade: true,
+                    speed: 'slow'
+                });
+            }, 3000);
+        } else {
+            $.ajax({
+                method: 'POST',
+                url: serverPath + '/artery/deleteList',
+                data: {ids: ids.toString()},
+                success: function(data) {
+                    if (data.operateSuccess == true) {
+                        var operateSuccessId = $.gritter.add({
+                            title: '提示信息',
+                            text: data.operateMessage,
+                            image: serverPath + '/resources/images/tick.png',
+                            sticky: true,
+                            time: ''
+                        });
+
+                        if (data.operateSuccessUrl) {
+                            console.log(data.operateSuccessUrl);
+                            window.setTimeout(function() {
+                                window.location.href = serverPath + data.operateSuccessUrl;
+                            }, 1000);
+                        }
+                    } else {
+                        var operateError = $.gritter.add({
+                            title: '提示信息',
+                            text: data.operateMessage,
+                            image: serverPath + '/resources/images/error.png',
+                            sticky: true,
+                            time: '',
+                            class_name: 'gritter-error'
+                        });
+
+                        window.setTimeout(function() {
+                            $.gritter.remove(operateError, {
+                                fade: true,
+                                speed: 'slow'
+                            })
+                        }, 3000);
+                    }
+                }
+            });
+        }
+    });
+
+}

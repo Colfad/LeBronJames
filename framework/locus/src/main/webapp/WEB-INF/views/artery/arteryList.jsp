@@ -7,7 +7,8 @@
 <html>
 <head>
     <title>颅内动脉瘤病患信息列表</title>
-    <link href="${ctx}/resources/styles/zxy-web.css" rel="stylesheet" />
+    <link rel="stylesheet" href="${ctx}/resources/styles/zxy-web.css" />
+    <link rel="stylesheet" href="${ctx}/resources/assets/css/jquery.gritter.css" />
 </head>
 
 <body>
@@ -64,7 +65,7 @@
                 <div class="row">
                     <div class="span6">
                         <a href="${ctx}/artery/create" id="create_new" class="btn btn-success btn-xzweb">新增数据</a>
-                        <a id="delete_selected" class="btn btn-danger btn-xzweb">删除选中</a>
+                        <a id="delete_selected" class="btn btn-danger btn-xzweb" onclick="confirmDeleteChecked('${ctx}')">删除选中</a>
                         <a href="${ctx}/artery/exportExcel" id="exportExcel" class="btn btn-warning btn-xzweb">导出Excel</a>
                         <a href="#" id="importExcel" class="btn btn-info btn-xzweb">导入Excel</a>
                     </div>
@@ -103,7 +104,7 @@
             <c:forEach items="${arteries.content}" var="artery">
                 <tr>
                     <td class="center">
-                        <label><input type="checkbox" class="ace"><span class="lbl"></span></label>
+                        <label><input type="checkbox" class="ace" value="${artery.id}"><span class="lbl"></span></label>
                     </td>
                     <td>${artery.patientNumber}</td>
                     <td>${artery.patientName}</td>
@@ -198,10 +199,10 @@
                             </ul>
 
                         </div>
-                        <a class="btn btn-minier btn-primary btn-warning icon-leaf" href="${ctx}/artery/toClinicForm/${artery.id}/clinic/${artery.arteryClinic.id}" />
-                        <a class="btn btn-minier btn-primary btn-success icon-eye-open" href="${ctx}/artery/toDescribForm/${artery.id}/describ/${artery.arteryDescrib.id}" />
-                        <a class="btn btn-minier btn-primary btn-info icon-fire" href="${ctx}/artery/toCoilForm/${artery.id}/coil/${artery.arteryCoil.id}" />
-                        <a class="btn btn-minier btn-primary btn-info icon-group" href="${ctx}/artery/toVisitForm/${artery.id}/visit/${artery.arteryVisit.id}" />
+                        <a class="btn btn-minier btn-primary btn-warning icon-leaf" data-rel="tooltip" title="临床情况" href="${ctx}/artery/toClinicForm/${artery.id}/clinic/${artery.arteryClinic.id}" />
+                        <a class="btn btn-minier btn-primary btn-success icon-eye-open" data-rel="tooltip" title="肿瘤描述" href="${ctx}/artery/toDescribForm/${artery.id}/describ/${artery.arteryDescrib.id}" />
+                        <a class="btn btn-minier btn-primary btn-info icon-fire" data-rel="tooltip" title="Coil信息" href="${ctx}/artery/toCoilForm/${artery.id}/coil/${artery.arteryCoil.id}" />
+                        <a class="btn btn-minier btn-primary btn-info icon-group" data-rel="tooltip" title="随访信息" href="${ctx}/artery/toVisitForm/${artery.id}/visit/${artery.arteryVisit.id}" />
 
                     </td>
                 </tr>
@@ -242,6 +243,7 @@
     <script src="${ctx}/resources/assets/js/ace-elements.min.js"></script>
     <script src="${ctx}/resources/assets/js/ace.min.js"></script>
     <script src="${ctx}/resources/assets/js/bootbox.min.js"></script>
+    <script src="${ctx}/resources/assets/js/jquery.gritter.min.js"></script>
 
     <!-- inline scripts related to this page -->
 

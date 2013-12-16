@@ -1,10 +1,13 @@
 package com.zxy.web.framework.locus.web;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 import com.zxy.web.framework.locus.model.*;
 import com.zxy.web.framework.locus.service.*;
+import com.zxy.web.module.core.info.OperateInfo;
 import com.zxy.web.module.core.orm.FixEntityUtil;
 import com.zxy.web.module.core.web.Servlets;
+import org.apache.commons.lang.StringUtils;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,6 +93,25 @@ public class ArteryController {
         arteryService.save(artery);
         redirectAttributes.addFlashAttribute("message", "Great.. 创建患者信息成功!   此信息还有<strong id=\"timeLine\" style=\"color:red\">3</strong>秒关闭!!!");
         return "redirect:/artery";
+    }
+
+    @RequestMapping(value = "deleteList", method = RequestMethod.POST)
+    public @ResponseBody OperateInfo deleteByList(@RequestParam("ids") String ids) {
+        List<String> list = ImmutableList.copyOf(StringUtils.split(ids, ","));
+        OperateInfo operateInfo = new OperateInfo();
+
+        try {
+            arteryService.delete(list);
+            operateInfo.setOperateMessage("删除信息成功!!!");
+            operateInfo.setOperateSuccess(true);
+            operateInfo.setOperateSuccessUrl("/artery");
+        } catch (Exception e) {
+            operateInfo.setOperateMessage("删除信息失败!!!");
+            operateInfo.setOperateSuccess(false);
+        }
+
+        return operateInfo;
+
     }
 
     @RequestMapping(value = "update/{id}", method = RequestMethod.GET)
